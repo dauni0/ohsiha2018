@@ -22,7 +22,7 @@ module.exports = function(app, passport) {
     // app.post('/login', do all our passport stuff here);
 
     // =====================================
-    // REGISTER ==============================
+    // SIGNUP ==============================
     // =====================================
     // show the register form
     app.get('/signup', function(req, res) {
@@ -36,9 +36,6 @@ module.exports = function(app, passport) {
         failureRedirect : '/signup',
         failureFlash : true
     }));
-
-    // process the signup form
-    // app.post('/signup', do all our passport stuff here);
 
     // =====================================
     // PROFILE SECTION =====================
