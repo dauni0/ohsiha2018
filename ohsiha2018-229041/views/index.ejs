@@ -1,11 +1,37 @@
-<!DOCTYPE html>
+<!-- views/index.ejs -->
+<!doctype html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Hello world!</p>
-  </body>
+<head>
+  <title>Node Authentication</title>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <!--<style>-->
+    <!--body        { padding-top:80px; }-->
+    <!--</style>-->
+</head>
+<body>
+<div class="container">
+
+  <div class="jumbotron text-center">
+    <h1>Simple blog</h1>
+    <p>Login or Register with:</p>
+    <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Login</a>
+    <a href="/signup" class="btn btn-default"><span class="fa fa-user"></span> Signup</a>
+    <a href="/profile" class="btn btn-default"><span class="fa fa-user"></span> Profile</a>
+  </div>
+
+    <!--<--% for(var i = 0; i<blogs.length; ++i) { %->-->
+    <!--<div class="col-sm-6">-->
+        <!--<div class="well">-->
+            <!--<h3>Blog title: <--%=blogs[i].title%></h3>-->
+            <!--<p>-->
+                <!--<strong>Author:  <--%=blogs[i].author%></strong><br>-->
+                <!--<strong>Text: <--%=blogs[i].text%></strong><br>-->
+            <!--</p>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<--% } %->-->
+
+</div>
+</body>
 </html>
