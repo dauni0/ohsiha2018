@@ -19,17 +19,17 @@
     <a href="/profile" class="btn btn-default"><span class="fa fa-user"></span> Profile</a>
   </div>
 
-    <!--<--% for(var i = 0; i<blogs.length; ++i) { %->-->
-    <!--<div class="col-sm-6">-->
-        <!--<div class="well">-->
-            <!--<h3>Blog title: <--%=blogs[i].title%></h3>-->
-            <!--<p>-->
-                <!--<strong>Author:  <--%=blogs[i].author%></strong><br>-->
-                <!--<strong>Text: <--%=blogs[i].text%></strong><br>-->
-            <!--</p>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<--% } %->-->
+    <% for(var i = 0; i<blogs.length; ++i) { %>
+    <div class="col-sm-6">
+        <div class="well">
+            <h3>Blog title: <%=blogs[i].title%></h3>
+            <p>
+                <strong>Author:  <%=blogs[i].author%></strong><br>
+                <strong>Text: <%=blogs[i].text%></strong><br>
+            </p>
+        </div>
+    </div>
+    <% } %>
 
 </div>
 </body>

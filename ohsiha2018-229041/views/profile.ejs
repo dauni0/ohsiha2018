@@ -46,6 +46,33 @@
 
     </div>
 
+    <div class="row">
+        <% for(var i = 0; i < blogs.length; ++i) { %>
+        <div class="col-sm-6">
+            <div class="well">
+                <h3>Blog title:<%= blogs[i].title %></h3>
+
+                <p>
+                    <strong>Author: <%= blogs[i].author %></strong><br>
+                    <strong>Text: <%= blogs[i].text %></strong><br>
+                </p>
+
+                <form action="/editblog/<%= blogs[i]._id %>" method="post" id="blog-form">
+                    Modify Blog Text:<br>
+                    <input type="text" name="body" value="<%= blogs[i].text %>"<br><br>
+                    <input type="submit" value="Modify Blog">
+                </form>
+
+                <form action="/delete/<%= blogs[i]._id %>" method="post" id="blog-delete">
+                    Delete This Blog<br>
+                    <input type="submit" value="Delete Blog">
+                </form>
+
+            </div>
+        </div>
+        <% } %>
+    </div>
+
 </div>
 </body>
 </html>

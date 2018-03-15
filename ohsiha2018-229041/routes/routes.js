@@ -1,39 +1,35 @@
-// app/routes.js
+
+var Blog            = require('../models/blog')
+
 module.exports = function(app, passport) {
 
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
     app.get('/', function(req, res) {
-        res.render('index', { title: 'Ohsiha 2018' });
+        Blog.find({}, function(err, blogs) {
+            res.render('index.ejs', { blogs: blogs});
+        });
     });
 
     // =====================================
     // LOGIN ===============================
     // =====================================
-    // show the login form
     app.get('/login', function(req, res) {
-
-        // render the page and pass in any flash data if it exists
         res.render('login', { message: req.flash('loginMessage') });
     });
 
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/login', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
+        successRedirect : '/profile',
+        failureRedirect : '/login',
+        failureFlash : true
     }));
-
-    // process the login form
-    // app.post('/login', do all our passport stuff here);
 
     // =====================================
     // SIGNUP ==============================
     // =====================================
     // show the register form
     app.get('/signup', function(req, res) {
-
-        // render the page and pass in any flash data if it exists
         res.render('signup', { message: req.flash('signupMessage') });
     });
 
@@ -46,11 +42,12 @@ module.exports = function(app, passport) {
     // =====================================
     // PROFILE SECTION =====================
     // =====================================
-    // we will want this protected so you have to be logged in to visit
-    // we will use route middleware to verify this (the isLoggedIn function)
     app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile', {
-            user : req.user // get the user out of session and pass to template
+        Blog.find({author: req.user.email}, function(err, blogs) {
+            res.render('profile.ejs', {
+                user : req.user,
+                blogs: blogs
+            });
         });
     });
 
@@ -76,6 +73,13 @@ module.exports = function(app, passport) {
         });
     });
 
+    app.post('/delete/:id', isLoggedIn, function(req, res) {
+        var id = req.params.id;
+        Blog.deleteOne({_id : id}, function(err, blog) {
+            res.redirect(req.get('referer'));
+        });
+    });
+
     // =====================================
     // LOGOUT ==============================
     // =====================================
@@ -85,13 +89,10 @@ module.exports = function(app, passport) {
     });
 };
 
-// route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 
-    // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
         return next();
 
-    // if they aren't redirect them to the home page
     res.redirect('/');
 }
