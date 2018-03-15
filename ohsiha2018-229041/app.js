@@ -7,7 +7,6 @@ var bodyParser = require('body-parser');
 
 var session = require('express-session');
 
-var mongo = require('mongodb');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/ohsihadb');
 
@@ -15,7 +14,6 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
     // connected
-    console.log("connected to db");
 });
 
 var passport = require('passport');
