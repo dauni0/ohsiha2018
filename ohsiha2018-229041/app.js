@@ -38,7 +38,6 @@ app.use(function(req,res,next){
     next();
 });
 
-
 // required for passport
 app.use(session({
     secret: 'ohsiha2018',
